@@ -35,6 +35,9 @@ cd poison-generation
 python generate_poison.py <configuration-file>
 ```
 
+## Acknowledgement
+This material is based upon work partially supported by the United States Air Force under Contract No. FA8750‐19‐C‐0098, funding from SAP SE, NSF grant 1845216, and also financial assistance award number 60NANB18D279 from U.S. Department of Commerce, National Institute of Standards and Technology. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the United States Air Force, DARPA, or other funding agencies.
+
 ## References
 [1] Yonglong Tian, Dilip Krishnan, and Phillip Isola. Contrastive multiview coding. arXiv preprint arXiv:1906.05849,2019.
 
