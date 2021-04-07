@@ -4,6 +4,14 @@
 + **04/07/2021 -** Poison generation code added.
 + SSL Code coming soon.
 
+## Requirements
+
+All experiments were run using the following dependencies.
+
++ python=3.7
++ pytorch=1.6.0
++ torchvision=0.7.0
+
 ## Create ImageNet-100 dataset
 The ImageNet-100 dataset (random 100-class subset of ImageNet), commonly   used   in   self-supervision benchmarks, was introduced in [1].
 
@@ -28,6 +36,6 @@ python generate_poison.py <configuration-file>
 ```
 
 ## References
-[1] Yonglong  Tian,  Dilip  Krishnan,  and  Phillip  Isola.Con-trastive multiview coding.arXiv preprint arXiv:1906.05849,2019.
+[1] Yonglong Tian, Dilip Krishnan, and Phillip Isola. Contrastive multiview coding. arXiv preprint arXiv:1906.05849,2019.
 
-[2] Aniruddha Saha, Akshayvarun Subramanya, and Hamed Pir-siavash.  Hidden trigger backdoor attacks.  InProceedings ofthe AAAI Conference on Artificial Intelligence, volume 34,pages 11957–11965, 2020.
+[2] Aniruddha Saha, Akshayvarun Subramanya, and Hamed Pir-siavash.  Hidden trigger backdoor attacks.  In Proceedings ofthe AAAI Conference on Artificial Intelligence, volume 34 ,pages 11957–11965, 2020.
