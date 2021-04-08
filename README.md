@@ -12,6 +12,7 @@ All experiments were run using the following dependencies.
 + python=3.7
 + pytorch=1.6.0
 + torchvision=0.7.0
++ wandb=0.10.21 (for BYOL)
 
 Optional
 + faiss=1.6.3 (for k-NN evaluation)
@@ -111,6 +112,43 @@ CUDA_VISIBLE_DEVICES=0 python eval_knn.py \
                         --eval_data <evaluation-ID>
 ```
 ## BYOL [[4]](#4)
+
+The implementation for BYOL is from [https://github.com/htdt/self-supervised](https://github.com/htdt/self-supervised) modified slightly to suit our experimental setup.
+
+To train a ResNet-18 BYOL model on ImageNet-100 on 4 NVIDIA GEFORCE RTX 2080 Ti GPUs:
+(This scripts monitors the k-NN accuracy on clean ImageNet-100 dataset at regular intervals.)
+```
+cd byol
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m train \
+                                    --exp_id <ID> \
+                                    --dataset imagenet --lr 2e-3 --emb 128 --method byol \
+                                    --arch resnet18 --epoch 200 \
+                                    --train_file_path <path> \
+                                    --train_clean_file_path <path> 
+                                    --val_file_path <path>
+                                    --save_folder_root <path>
+```
+
+To train linear classifier on frozen BYOL embeddings on ImageNet-100:
+```
+python -m test --dataset imagenet \
+        --train_clean_file_path <path> \
+        --val_file_path <path> \
+        --emb 128 --method byol --arch resnet18 \
+        --fname <SSL-model-checkpoint-path>
+```
+
+To evaluate linear classifier on clean and poisoned validation set:
+```
+python -m test --dataset imagenet \
+        --val_file_path <path> \
+        --val_poisoned_file_path <path> \
+        --emb 128 --method byol --arch resnet18 \
+        --fname <SSL-model-checkpoint-path> \
+        --clf_chkpt <linear-classifier-checkpoint-path> \
+        --eval_data <evaluation-ID> --evaluate
+```
+
 ## Jigsaw [[5]](#5)
 ## RotNet [[6]](#6)
 ## Acknowledgement
