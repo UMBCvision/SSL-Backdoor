@@ -111,7 +111,7 @@ CUDA_VISIBLE_DEVICES=0 python eval_knn.py \
                         --val_poisoned_file <path> \
                         --eval_data <evaluation-ID>
 ```
-## BYOL [[4]](#4)
+### BYOL [[4]](#4)
 
 The implementation for BYOL is from [https://github.com/htdt/self-supervised](https://github.com/htdt/self-supervised) modified slightly to suit our experimental setup.
 
@@ -149,8 +149,8 @@ python -m test --dataset imagenet \
         --eval_data <evaluation-ID> --evaluate
 ```
 
-## Jigsaw [[5]](#5)
-## RotNet [[6]](#6)
+### Jigsaw [[5]](#5)
+### RotNet [[6]](#6)
 ## Acknowledgement
 This material is based upon work partially supported by the United States Air Force under Contract No. FA8750‐19‐C‐0098, funding from SAP SE, NSF grant 1845216, and also financial assistance award number 60NANB18D279 from U.S. Department of Commerce, National Institute of Standards and Technology. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the United States Air Force, DARPA, or other funding agencies.
 
