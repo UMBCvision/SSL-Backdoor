@@ -1,10 +1,19 @@
 # SSL-Backdoor
 
+<p align="center">
+  <img width="750" src=https://github.com/UMBCvision/SSL-Backdoor/blob/main/SSL_Backdoor_Figures_Teaser.png>
+</p>
+
+### Abstract
+Large-scale unlabeled data has allowed recent progress in self-supervised learning methods that learn rich visual representations. State-of-the-art self-supervised methods for learning representations from images (MoCo and BYOL) use an inductive bias that different augmentations (e.g. random crops) of an image should produce similar embeddings. We show that such methods are vulnerable to backdoor attacks where an attacker poisons a part of the unlabeled data by adding a small trigger (known to the attacker) to the images. The model performance is good on clean test images but the attacker can manipulate the decision of the model by showing the trigger at test time. Backdoor attacks have been studied extensively in supervised learning and to the best of our knowledge, we are the first to study them for self-supervised learning. Backdoor attacks are more practical in self-supervised learning since the unlabeled data is large and as a result, an inspection of the data to avoid the presence of poisoned data is prohibitive. We show that in our targeted attack, the attacker can produce many false positives for the target category by using the trigger at test time. We also develop a knowledge distillation based defense algorithm that succeeds in neutralizing the attack. Our code is available here: [https://github.com/UMBCvision/SSL-Backdoor](https://github.com/UMBCvision/SSL-Backdoor).
+
+### Paper
+arXiv version coming soon.
+
 ## Updates
 + **04/07/2021 -** Poison generation code added.
-+ **04/07/2021 -** MoCo v2 code added. 
-+ Other SSL Methods code coming soon.
-
++ **04/08/2021 -** MoCo v2, BYOL code added. 
++ **04/14/2021 -** Jigsaw, RotNet code added.
 ## Requirements
 
 All experiments were run using the following dependencies.
@@ -222,3 +231,14 @@ This material is based upon work partially supported by the United States Air Fo
 <a id="5">[5]</a> Noroozi, Mehdi, and Paolo Favaro. "Unsupervised learning of visual representations by solving jigsaw puzzles." European conference on computer vision. Springer, Cham, 2016.
 
 <a id="6">[6]</a> Spyros Gidaris, Praveer Singh, and Nikos Komodakis.  Unsupervised representation learning by predicting image rotations. In International Conference on Learning Representations, 2018.
+
+### Citation
+If you find our paper, code or models useful, please cite us using
+```bib
+```
+
+### Questions/Issues
+Please create an issue on the Github Repo directly or contact [anisaha1@umbc.edu][email] for any questions about the code.
+
+[paper]: comingsoon
+[email]: mailto:anisaha1@umbc.edu
