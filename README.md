@@ -13,6 +13,7 @@ All experiments were run using the following dependencies.
 + pytorch=1.6.0
 + torchvision=0.7.0
 + wandb=0.10.21 (for BYOL)
++ torchnet=0.0.4 (for RotNet)
 
 Optional
 + faiss=1.6.3 (for k-NN evaluation)
@@ -131,34 +132,88 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m train \
 
 To train linear classifier on frozen BYOL embeddings on ImageNet-100:
 ```
-python -m test --dataset imagenet \
-        --train_clean_file_path <path> \
-        --val_file_path <path> \
-        --emb 128 --method byol --arch resnet18 \
-        --fname <SSL-model-checkpoint-path>
+CUDA_VISIBLE_DEVICES=0 python -m test --dataset imagenet \
+                            --train_clean_file_path <path> \
+                            --val_file_path <path> \
+                            --emb 128 --method byol --arch resnet18 \
+                            --fname <SSL-model-checkpoint-path>
 ```
 
 To evaluate linear classifier on clean and poisoned validation set:
 ```
-python -m test --dataset imagenet \
-        --val_file_path <path> \
-        --val_poisoned_file_path <path> \
-        --emb 128 --method byol --arch resnet18 \
-        --fname <SSL-model-checkpoint-path> \
-        --clf_chkpt <linear-classifier-checkpoint-path> \
-        --eval_data <evaluation-ID> --evaluate
+CUDA_VISIBLE_DEVICES=0 python -m test --dataset imagenet \
+                            --val_file_path <path> \
+                            --val_poisoned_file_path <path> \
+                            --emb 128 --method byol --arch resnet18 \
+                            --fname <SSL-model-checkpoint-path> \
+                            --clf_chkpt <linear-classifier-checkpoint-path> \
+                            --eval_data <evaluation-ID> --evaluate
 ```
 
 ### Jigsaw [[5]](#5)
+
+The implementation for Jigsaw is our own Pytorch reimplementation based on the authors’ Caffe code [https://github.com/MehdiNoroozi/JigsawPuzzleSolver](https://github.com/MehdiNoroozi/JigsawPuzzleSolver) modified slightly to suit our experimental setup. There might be some legacy Pytorch code, but that doesn't affect the correctness of training or evaluation. If you are looking for a recent Pytorch implementation of Jigsaw, [https://github.com/facebookresearch/vissl](https://github.com/facebookresearch/vissl) is a good place to start.
+
+To train a ResNet-18 Jigsaw model on ImageNet-100 on 1 NVIDIA GEFORCE RTX 2080 Ti GPU:
+(The code doesn't support Pytorch distributed training.)
+```
+cd jigsaw
+CUDA_VISIBLE_DEVICES=0 python train_jigsaw.py \
+                                --train_file <path> \
+                                --val_file <path> \
+                                --save <path>
+```
+
+To train linear classifier on frozen Jigsaw embeddings on ImageNet-100:
+```
+CUDA_VISIBLE_DEVICES=0 python eval_conv_linear.py \
+                        -a resnet18 --train_file <path> \
+                        --val_file <path> \
+                        --save <path> \
+                        --weights <SSL-model-checkpoint-path>
+```
+
+To evaluate linear classifier on clean and poisoned validation set:
+```
+CUDA_VISIBLE_DEVICES=0 python eval_conv_linear.py -a resnet18 \
+                            --val_file <path> \
+                            --val_poisoned_file <path> \
+                            --weights <SSL-model-checkpoint-path> \
+                            --resume <linear-classifier-checkpoint-path> \
+                            --evaluate --eval_data <evaluation-ID>
+```
+
+
 ### RotNet [[6]](#6)
+The implementation for RotNet is from [https://github.com/gidariss/FeatureLearningRotNet](https://github.com/gidariss/FeatureLearningRotNet) modified slightly to suit our experimental setup. There might be some legacy Pytorch code, but that doesn't affect the correctness of training or evaluation. If you are looking for a recent Pytorch implementation of RotNet, [https://github.com/facebookresearch/vissl](https://github.com/facebookresearch/vissl) is a good place to start.
+
+To train a ResNet-18 Jigsaw model on ImageNet-100 on 1 NVIDIA TITAN RTX GPU:
+(The code doesn't support Pytorch distributed training. Choose the experiment ID config file as required.)
+```
+cd jigsaw
+CUDA_VISIBLE_DEVICES=0 python main.py --exp <ImageNet100_RotNet_*> --save_folder <path>
+```
+
+To train linear classifier on frozen RotNet embeddings on ImageNet-100:
+```
+CUDA_VISIBLE_DEVICES=0 python main.py --exp <ImageNet100_LinearClassifiers_*> --save_folder <path>
+```
+
+To evaluate linear classifier on clean and poisoned validation set:
+```
+CUDA_VISIBLE_DEVICES=0 python main.py --exp <ImageNet100_LinearClassifiers_*> \
+                            --save_folder <path> \
+                            --evaluate --checkpoint=<epoch_num> --eval_data <evaluation-ID>
+```
+
+
 ## Acknowledgement
 This material is based upon work partially supported by the United States Air Force under Contract No. FA8750‐19‐C‐0098, funding from SAP SE, NSF grant 1845216, and also financial assistance award number 60NANB18D279 from U.S. Department of Commerce, National Institute of Standards and Technology. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the United States Air Force, DARPA, or other funding agencies.
 
 ## References
-<a id="1">[1]</a> 
-Yonglong Tian, Dilip Krishnan, and Phillip Isola. Contrastive multiview coding. arXiv preprint arXiv:1906.05849,2019.
+<a id="1">[1]</a> Yonglong Tian, Dilip Krishnan, and Phillip Isola. Contrastive multiview coding. arXiv preprint arXiv:1906.05849,2019.
 
-<a id="2">[2]</a> Aniruddha Saha, Akshayvarun Subramanya, and Hamed Pir-siavash. Hidden trigger backdoor attacks. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, pages 11957–11965, 2020.
+<a id="2">[2]</a> Aniruddha Saha, Akshayvarun Subramanya, and Hamed Pirsiavash. Hidden trigger backdoor attacks. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, pages 11957–11965, 2020.
 
 <a id="3">[3]</a> Chen, Xinlei, et al. "Improved baselines with momentum contrastive learning." arXiv preprint arXiv:2003.04297 (2020).
 
