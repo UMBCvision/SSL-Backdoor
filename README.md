@@ -8,7 +8,7 @@
 Large-scale unlabeled data has allowed recent progress in self-supervised learning methods that learn rich visual representations. State-of-the-art self-supervised methods for learning representations from images (MoCo and BYOL) use an inductive bias that different augmentations (e.g. random crops) of an image should produce similar embeddings. We show that such methods are vulnerable to backdoor attacks where an attacker poisons a part of the unlabeled data by adding a small trigger (known to the attacker) to the images. The model performance is good on clean test images but the attacker can manipulate the decision of the model by showing the trigger at test time. Backdoor attacks have been studied extensively in supervised learning and to the best of our knowledge, we are the first to study them for self-supervised learning. Backdoor attacks are more practical in self-supervised learning since the unlabeled data is large and as a result, an inspection of the data to avoid the presence of poisoned data is prohibitive. We show that in our targeted attack, the attacker can produce many false positives for the target category by using the trigger at test time. We also develop a knowledge distillation based defense algorithm that succeeds in neutralizing the attack. Our code is available here: [https://github.com/UMBCvision/SSL-Backdoor](https://github.com/UMBCvision/SSL-Backdoor).
 
 ### Paper
-arXiv version coming soon.
+[Backdoor Attacks on Self-Supervised Learning][paper]
 
 ## Updates
 + **04/07/2021 -** Poison generation code added.
@@ -235,10 +235,16 @@ This material is based upon work partially supported by the United States Air Fo
 ### Citation
 If you find our paper, code or models useful, please cite us using
 ```bib
+@article{saha2021backdoor,
+  title={Backdoor Attacks on Self-Supervised Learning},
+  author={Saha, Aniruddha and Tejankar, Ajinkya and Koohpayegani, Soroush Abbasi and Pirsiavash, Hamed},
+  journal={arXiv preprint arXiv:2105.10123},
+  year={2021}
+}
 ```
 
 ### Questions/Issues
 Please create an issue on the Github Repo directly or contact [anisaha1@umbc.edu][email] for any questions about the code.
 
-[paper]: comingsoon
+[paper]: https://arxiv.org/abs/2105.10123
 [email]: mailto:anisaha1@umbc.edu
