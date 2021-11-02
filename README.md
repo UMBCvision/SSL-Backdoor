@@ -199,7 +199,7 @@ The implementation for RotNet is from [https://github.com/gidariss/FeatureLearni
 To train a ResNet-18 Jigsaw model on ImageNet-100 on 1 NVIDIA TITAN RTX GPU:
 (The code doesn't support Pytorch distributed training. Choose the experiment ID config file as required.)
 ```
-cd jigsaw
+cd rotnet
 CUDA_VISIBLE_DEVICES=0 python main.py --exp <ImageNet100_RotNet_*> --save_folder <path>
 ```
 
