@@ -246,5 +246,5 @@ If you find our paper, code or models useful, please cite us using
 ### Questions/Issues
 Please create an issue on the Github Repo directly or contact [anisaha1@umbc.edu][email] for any questions about the code.
 
-[paper]: https://arxiv.org/abs/2105.10123
+[paper]: https://web.cs.ucdavis.edu/~hpirsiav/papers/backdoor_ssl_cvpr22.pdf
 [email]: mailto:anisaha1@umbc.edu
