@@ -14,6 +14,11 @@ Large-scale unlabeled data has allowed recent progress in self-supervised learni
 + **04/07/2021 -** Poison generation code added.
 + **04/08/2021 -** MoCo v2, BYOL code added. 
 + **04/14/2021 -** Jigsaw, RotNet code added.
++ **06/22/2022 -** SSL models (MoCo, BYOL, MSF), linear classifiers and poisoned validation data shared.
+
+## Models and Data
+[Models and Data](https://umbc-my.sharepoint.com/:f:/g/personal/anisaha1_umbc_edu/EnSAoMOK_CNFly3uWvmH_84BeVsCZaENCjWyCE38tkfSEw?e=l94VxX)
+
 ## Requirements
 
 All experiments were run using the following dependencies.
