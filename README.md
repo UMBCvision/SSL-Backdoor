@@ -240,11 +240,12 @@ This material is based upon work partially supported by the United States Air Fo
 ### Citation
 If you find our paper, code or models useful, please cite us using
 ```bib
-@article{saha2021backdoor,
-  title={Backdoor Attacks on Self-Supervised Learning},
+@inproceedings{saha2022backdoor,
+  title={Backdoor attacks on self-supervised learning},
   author={Saha, Aniruddha and Tejankar, Ajinkya and Koohpayegani, Soroush Abbasi and Pirsiavash, Hamed},
-  journal={arXiv preprint arXiv:2105.10123},
-  year={2021}
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={13337--13346},
+  year={2022}
 }
 ```
 
